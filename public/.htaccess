@@ -3,5 +3,4 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-</IfModule>Route::add('go', [Controller\Site::class, 'index']);
-Route::add('hello', [Controller\Site::class, 'hello']);
+</IfModule>
