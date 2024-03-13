@@ -1,0 +1,14 @@
+{
+    "name": "dimkadanilovv/1st-php-practice",
+    "description": "Description",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "DimkaDanilovv",
+            "email": "DanilovDmitriy769d@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
