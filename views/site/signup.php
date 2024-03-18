@@ -18,7 +18,6 @@
    <label>Адрес прописки<br><input type="text" name="visa" placeholder="Ул. Пушкина 45" required></label>
    <label>Должность<br><input type="text" name="post" required></label>
    <label>Подразделение<br><input type="text" name="subdivision" required></label>
-   <label>Вид работника<br><input type="text" name="type_of _employee" required></label>
    <button>Зарегистрироваться</button>
 </div>
 </div>

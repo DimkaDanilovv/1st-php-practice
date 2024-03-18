@@ -22,7 +22,7 @@ class User extends Model implements IdentityInterface
        'visa',
        'post',
        'subdivision',
-       'type_of _employee'
+       
    ];
 
    protected static function booted()
