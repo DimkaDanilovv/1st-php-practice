@@ -8,15 +8,13 @@ use Src\Request;
 use Model\User;
 use Src\Auth\Auth;
 
-
 class Site
-{
+{ 
     public function index(Request $request): string
     {
        $posts = Post::where('id', $request->id)->get();
        return (new View())->render('site.post', ['posts' => $posts]);
-    }
-    
+    }    
 
    public function hello(): string
    {
@@ -24,18 +22,20 @@ class Site
    }
 
    public function signup(Request $request): string
-    {
-   if ($request->method === 'POST' && User::create($request->all())) {
-       app()->route->redirect('/go');
+   {
+      if ($request->method === 'POST' && User::create($request->all())) {
+          app()->route->redirect('/go');
+      }
+      return new View('site.signup');
    }
-   return new View('site.signup');
-    }
-    public function login(Request $request): string
+   
+   public function login(Request $request): string
 {
    //Если просто обращение к странице, то отобразить форму
    if ($request->method === 'GET') {
        return new View('site.login');
    }
+
    //Если удалось аутентифицировать пользователя, то редирект
    if (Auth::attempt($request->all())) {
        app()->route->redirect('/hello');
@@ -50,5 +50,95 @@ public function logout(): void
    app()->route->redirect('/hello');
 }
 
+
+public function frames(Request $request): string
+{
+   //Если просто обращение к странице, то отобразить форму
+   if ($request->method === 'GET') {
+       return new View('site.frames');
+   }
+
+   //Если удалось аутентифицировать пользователя, то редирект
+   if (Auth::attempt($request->all())) {
+       app()->route->redirect('/hello');
+   }
+   //Если аутентификация не удалась, то сообщение об ошибке
+   return new View('site.hello', ['message' => 'hello working']);
+}
+
+public function colculate_compos(Request $request): string
+{
+   //Если просто обращение к странице, то отобразить форму
+   if ($request->method === 'GET') {
+       return new View('site.colculate_compos');
+   }
+
+   //Если удалось аутентифицировать пользователя, то редирект
+   if (Auth::attempt($request->all())) {
+       app()->route->redirect('/hello');
+   }
+   //Если аутентификация не удалась, то сообщение об ошибке
+   return new View('site.hello', ['message' => 'hello working']);
+}
+
+public function department_sel(Request $request): string
+{
+   //Если просто обращение к странице, то отобразить форму
+   if ($request->method === 'GET') {
+       return new View('site.department_sel');
+   }
+
+   //Если удалось аутентифицировать пользователя, то редирект
+   if (Auth::attempt($request->all())) {
+       app()->route->redirect('/hello');
+   }
+   //Если аутентификация не удалась, то сообщение об ошибке
+   return new View('site.hello', ['message' => 'hello working']);
+}
+
+public function tier(Request $request): string
+{
+   //Если просто обращение к странице, то отобразить форму
+   if ($request->method === 'GET') {
+       return new View('site.tier');
+   }
+
+   //Если удалось аутентифицировать пользователя, то редирект
+   if (Auth::attempt($request->all())) {
+       app()->route->redirect('/hello');
+   }
+   //Если аутентификация не удалась, то сообщение об ошибке
+   return new View('site.hello', ['message' => 'hello working']);
+}
+   
+public function Add_employee(Request $request): string
+{
+   //Если просто обращение к странице, то отобразить форму
+   if ($request->method === 'GET') {
+       return new View('site.Add_employee');
+   }
+
+   //Если удалось аутентифицировать пользователя, то редирект
+   if (Auth::attempt($request->all())) {
+       app()->route->redirect('/hello');
+   }
+   //Если аутентификация не удалась, то сообщение об ошибке
+   return new View('site.hello', ['message' => 'hello working']);
+}
+
+public function add_new_employee(Request $request): string
+{
+   //Если просто обращение к странице, то отобразить форму
+   if ($request->method === 'GET') {
+       return new View('site.add_new_employee');
+   }
+
+   //Если удалось аутентифицировать пользователя, то редирект
+   if (Auth::attempt($request->all())) {
+       app()->route->redirect('/hello');
+   }
+   //Если аутентификация не удалась, то сообщение об ошибке
+   return new View('site.hello', ['message' => 'hello working']);
+}
 
 }
