@@ -4,6 +4,7 @@
    <div>
       <h2>Регистрация</h2>
       <div class="column">
+      <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
    <label>Логин<br><input type="text" name="login" placeholder="example" required></label>
    <label>Пароль<br><input type="password" name="password" placeholder="****" required></label>                     
    <button>Зарегистрироваться</button>
