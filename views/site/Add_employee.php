@@ -1,7 +1,7 @@
 <form method="post" class='d-flex justify-content-center'>
    <div class='border border-5 border-dark center rounded-3'>
    <div>
-      <h2>Добавить сотрудника</h2>
+      <h2>Добавить сотрудника <br>отдела кадров</h2>
       <div class="column">
    <label>Логин<br><select name="gender" id="gender">
       <option value="none">Саня228</option>
