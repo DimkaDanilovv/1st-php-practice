@@ -11,29 +11,40 @@
    <title>Pop it MVC</title>
 </head>
 <body class=''>
-<header>
-   <nav class= 'd-flex'>
+<div class="d-flex">
+   <nav class="">
        <a href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
        <?php
-       if (!app()->auth::check()):
+       if (app()->auth::check()):
            ?>
-           <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
-           <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
-           <a href="<?= app()->route->getUrl('/frames') ?>">Отдел кадров</a>
-           <a href="<?= app()->route->getUrl('/colculate_compos') ?>">Подсчет состава</a>
-           <a href="<?= app()->route->getUrl('/department_sel') ?>">Выбор подразделения</a>
-           <a href="<?= app()->route->getUrl('/tier') ?>">Прикрепить сотрудника</a>
-           <a href="<?= app()->route->getUrl('/Add_employee') ?>">Добавить сотрудника отдела кадров</a>
-           <a href="<?= app()->route->getUrl('/add_new_employee') ?>">Добавить сотрудника</a>
+               <?php if (app()->auth::user()->check): ?>
+                       <span>Общие функции</span>
+                       <a class="flex" href="<?= app()->route->getUrl('/login') ?>">Вход</a>
+                   <?php elseif (app()->auth::user()->link_to_the_role == 3): ?>
+                       <span>Для сотрудников отдела кадров</span>
+                       <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
+                       <a href="<?= app()->route->getUrl('/add_new_employee') ?>">Добавить нового сотрудника</a>
+                       <a href="<?= app()->route->getUrl('/colculate_compos') ?>">Подсчет состава</a>
+                       <a href="<?= app()->route->getUrl('/department_sel') ?>">Выбор подразделения</a>
+               <?php elseif (app()->auth::user()->link_to_the_role == 1): ?>
+                       <!-- <span>Для администратора</span> -->
+                       <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
+                       <a href="<?= app()->route->getUrl('/add_new_employee') ?>">Добавить нового сотрудника</a>
+                       <a href="<?= app()->route->getUrl('/colculate_compos') ?>">Подсчет состава</a>
+                       <a href="<?= app()->route->getUrl('/department_sel') ?>">Выбор подразделения</a>
+                       <a href="<?= app()->route->getUrl('/tier') ?>">Прикрепить сотрудника</a>
+                       <a href="<?= app()->route->getUrl('/Add_employee') ?>">Добавить сотрудника отдела кадров</a>
+               <?php endif; ?>
+           <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->login ?>)</a>
        <?php
        else:
            ?>
-           <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>
+           <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
        <?php
        endif;
        ?>
    </nav>
-</header>
+</div>
 <main>
    <?= $content ?? '' ?>
 </main>
@@ -46,7 +57,6 @@
     }
    a{
       color: black;
-      display: flex;
       margin-left: 25px;
    }
    .center{
