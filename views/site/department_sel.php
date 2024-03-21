@@ -14,7 +14,8 @@
          <li>Третье</li>
          <li>Четвертое</li>
       </ul>
-      <strong>Средний возраст: XX</strong>
+      <strong>Средний возраст: </strong>
+      <?= $srvozrast ?>
 </div>
 </div>
 </div>

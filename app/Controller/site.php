@@ -87,16 +87,34 @@ public function colculate_compos(Request $request): string
 public function department_sel(Request $request): string
 {
    //Если просто обращение к странице, то отобразить форму
-   if ($request->method === 'GET') {
-       return new View('site.department_sel');
-   }
-
+   $users = User::all();
    //Если удалось аутентифицировать пользователя, то редирект
    if (Auth::attempt($request->all())) {
        app()->route->redirect('/department_sel');
-   }
-   //Если аутентификация не удалась, то сообщение об ошибке
-   return new View('site.hello', ['message' => 'hello working']);
+    }
+    
+    function __calculateAge($users){
+        $srvozrast = 0;
+        $i = 0;
+        if(!empty($users)) {
+            foreach ($users as $user) {
+                $date = $user->date;
+                $birthDate = new \DateTime($date);
+                $currentDate = new \DateTime();
+                $age = $currentDate->diff($birthDate)->y;
+                $srvozrast += $age;
+                $i += 1;
+            }
+            if($i === 0){
+                return 0;
+            }
+            $srvozrast = $srvozrast / $i;
+            return $srvozrast;
+        }
+    }
+    $srvozras = __calculateAge($users);
+    //Если аутентификация не удалась, то сообщение об ошибке
+    return new View('site.department_sel', ['message' => 'hello working', "srvozrast"=>$srvozras]);
 }
 
 public function tier(Request $request): string
